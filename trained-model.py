@@ -1,3 +1,4 @@
+# continuará...
 import os
 import cv2
 
@@ -20,12 +21,8 @@ for root, dir, files in os.walk(images):
             imgGray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
             # A la imagen gris le voy a pasar el detector facial
-            face = face_cascade.detectMultiScale(imgGray, scaleFactor=1.5, minNeighbors=5)
-            for (x, y, w, h) in face:
+            faces = face_cascade.detectMultiScale(imgGray, scaleFactor=1.5, minNeighbors=5)
+            for (x, y, w, h) in faces:
                 imgGray = imgGray[x:x+w, y:y+h] #recorto la cara, que es la parte que me interesa
                 xtrain.append(imgGray)
 
-# ahora a cada uno de esas matrices tendré que asignarle un label
-# DUDA: cómo obtengo una sola matriz para dos imagenes
-
-print(xtrain)

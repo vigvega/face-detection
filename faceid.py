@@ -17,3 +17,4 @@ while True:
 
     if cv2.waitKey(1) & 0xFF==ord('q'): # hay que hacer la espera para que vaya chekeando si pasa algo
         break
+
