@@ -3,6 +3,7 @@ from facenet_pytorch import InceptionResnetV1
 import torch
 import torchvision
 import os
+import numpy as np
 
 # rutas
 images = "/home/vi/fr/images"
@@ -10,6 +11,8 @@ images_processed = "/home/vi/fr/images_processed"
 
 embeddings = []
 ids = []
+
+
 
 # detector
 def facedet(image):
@@ -28,17 +31,29 @@ def facedet(image):
 # (si reconociese más de una cara, me devolvería la última)
     return f
 
+
+
 def saveImg(img, name):
     fname =  f'images_processed/{name}.jpg'
     cv2.imwrite(fname, img)
 
+
+
 def embedding(image):
     resnet = InceptionResnetV1(pretrained='vggface2').eval() # inicializo resnet
-    img = cv2.imread(image) # leo mi imagen (y la utilizaré como nparray)
-    img_tensor = torchvision.transforms.functional.to_tensor(img) # transformo mi imagen a tensor
 
+    if isinstance(image, np.ndarray)==False:
+        img = cv2.imread(image) # leo mi imagen (y la utilizaré como nparray)
+    else:
+        img = image
+
+    img_tensor = torchvision.transforms.functional.to_tensor(img) # transformo mi imagen a tensor
     img_embedding = resnet(img_tensor.unsqueeze(0)).detach() #embedding matrix
+    
     return img_embedding
+
+
+
 
 def recolect():
     # recorro la carpeta donde están todas mis imagenes sin procesar y las proceso
@@ -66,6 +81,8 @@ def recolect():
     known_faces = [embeddings, ids]
     torch.save(known_faces, 'known_faces.pt') # guardo mi resultado
 
+
+
 def matches(img):
     emb = embedding(img)
 
@@ -79,7 +96,11 @@ def matches(img):
         parecido = torch.dist(e, emb).item()
         parecidos.append(parecido)
     
-    if min(parecidos)>0.7:
+    
+    return names[parecidos.index(min(parecidos))]
+    '''
+    if min(parecidos)>0.8:
         return "?????"
     else:
         return names[parecidos.index(min(parecidos))]
+    '''
