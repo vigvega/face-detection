@@ -1,3 +1,1 @@
 # Face-recognition
-
-# face-detection
