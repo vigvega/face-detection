@@ -1,4 +1,4 @@
-## Face-recognition
+## Reconocimiento facial
 
 ### Introducción
 El objetivo de este proyecto es diseñar un programa sencillo de reconocimiento facial en tiempo real. Para ello, he dividido el proceso en dos fases claramente diferenciadas: detección y reconocimiento.
