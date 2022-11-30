@@ -1,6 +1,6 @@
-## Reconocimiento facial
+# Reconocimiento facial
 
-### Introducción
+## Introducción
 El objetivo de este proyecto es diseñar un programa sencillo de reconocimiento facial en tiempo real. Para ello, he dividido el proceso en dos fases claramente diferenciadas: detección y reconocimiento.
 
 Todo el código se ha desarrollado en python, con el apoyo de librerías como OpenCV, Pytorch, Numpy y Tensor.
@@ -34,7 +34,7 @@ Este algoritmo es bastante fiable, pues es capaz de detectar rostros usando tres
 
 ---
 
-### Reconocimiento
+## Reconocimiento
 Para esta fase he utilizado la arquitectura de red neuronal convolucional [Inception-ResNet-V1](https://pypi.org/project/facenet-pytorch/) que, como su propio nombre indica, está basada en las redes Inception y ResNet.
 
 El modelo Inception-V1 se basa en el problema de que es muy complicado obtener características similares entre varias imagenes, pues los resultados pueden cambiar significativamente en función del tamaño de la imagen y otros criterios.
